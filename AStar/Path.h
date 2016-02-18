@@ -11,6 +11,7 @@
 #include<iostream>
 #include<vector>
 #include"Node.h"
+#include<algorithm>
 
 using namespace std;
 
@@ -21,12 +22,15 @@ private:
 	int obstruction[20][20];
 	int start_x,start_y;
 	int goal_x,goal_y;
+	int diagonalCost = 14;
+	int cost = 10;
+	int next_x, next_y;
 public:
 	CPath();
 	virtual ~CPath();
 
 	void SetObstructionMatrix(unsigned int map[20][20],unsigned int ground,unsigned int start,unsigned int goal);
-	void InsertIntoClosedList(int total_cost,int start_cost,int x, int y);
+	void InsertIntoClosedList(NODE n);
 	void InsertIntoOpenList(int x,int y);
 	vector<NODE> DeleteElement(vector<NODE> nodesList,int x,int y);
 	bool IsElementExits(int x,int y);
@@ -34,7 +38,7 @@ public:
 	void Create();
 	void ClearAll();
 	vector<NODE> BackTrack();
-	NODE GetNodeAt(int x,int y);
+	NODE GetNodeAt(vector<NODE>,int x,int y);
 
 };
 
